@@ -26,6 +26,16 @@ const Scroll: React.FC = () => {
       ),
     };
   });
+  const avatarStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(
+        scrollY.value,
+        [100, 150],
+        [1, 0],
+        Extrapolate.CLAMP,
+      ),
+    };
+  });
 
   return (
     <View>
@@ -56,11 +66,11 @@ const Scroll: React.FC = () => {
         <Text style={styles.listItem}>Item from List</Text>
       </Animated.ScrollView>
       <Animated.View style={[styles.header, headerStyle]}>
-        <Image
+        <Animated.Image
           source={{
             uri: 'https://github.com/bernacle.png',
           }}
-          style={styles.avatar}
+          style={[styles.avatar, avatarStyle]}
         />
         <Text style={styles.name}>Bruno Simplicio</Text>
       </Animated.View>
